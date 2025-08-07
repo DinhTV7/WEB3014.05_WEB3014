@@ -22,5 +22,12 @@ class RoleController extends Controller
 
         return view('roles.index', compact('roles'));
     }
+
+    // Hàm xóa chức vụ
+    public function destroy($id)
+    {
+        $this->modelRole->delete($id);
+        redirect('/roles');
+    }
+    // Ôn tập: Xây dựng chức năng xóa người dùng
 }
-// Ôn tập: Hiển thị dữ liệu của người dùng ra table

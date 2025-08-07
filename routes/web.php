@@ -12,10 +12,12 @@ $router = new Router();
 $router->get('/', HomeController::class . '@index');
 
 // Route quản lý chức vụ
-$router->get('/roles', RoleController::class . '@index');
+$router->get('/roles',              RoleController::class . '@index');
+$router->get('/roles/destroy/{id}', RoleController::class . '@destroy');
 
 // Route quản lý người dùng
-$router->get('/users', UserController::class . '@index');
+$router->get('/users',              UserController::class . '@index');
+$router->get('/users/destroy/{id}', UserController::class . '@destroy');
 
 // ------------------------
 

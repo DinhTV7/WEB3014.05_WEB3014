@@ -15,4 +15,10 @@ class Role extends Model
 
         return $roles;
     }
+
+    // Hàm xóa dữ liệu
+    public function delete ($id)
+    {
+        return $this->connection->delete('roles', ['id' => $id]);
+    }
 }

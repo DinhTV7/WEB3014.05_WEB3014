@@ -19,4 +19,10 @@ class User extends Model
 
         return $users;
     }
+
+    // Hàm xóa dữ liệu
+    public function delete ($id)
+    {
+        return $this->connection->delete('users', ['id' => $id]);
+    }
 }

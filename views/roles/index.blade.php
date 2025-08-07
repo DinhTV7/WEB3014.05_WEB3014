@@ -18,7 +18,12 @@
                     <td>{{ $role['name'] }}</td>
                     <td>
                         <button>Sửa</button>
-                        <button>Xóa</button>
+                        <a href="{{ route('/roles/destroy/' . $role['id']) }}" 
+                            onclick="return confirm('Bạn có đồng ý xóa không?')">
+
+                            <button>Xóa</button>
+                            
+                        </a>
                     </td>
                 </tr>
             @endforeach

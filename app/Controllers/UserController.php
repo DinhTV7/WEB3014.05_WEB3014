@@ -19,6 +19,13 @@ class UserController extends Controller
     {
         $users = $this->modelUser->getAll();
 
-        debug($users);
+        return view('users.index', compact('users'));
+    }
+
+    // Hàm xóa thông tin người dùng
+    public function destroy ($id)
+    {
+        $this->modelUser->delete($id);
+        redirect('/users');
     }
 }
