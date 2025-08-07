@@ -1,0 +1,20 @@
+<?php /* Xây dựng layout dùng riêng cho trang ADMIN */ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Document</title>
+</head>
+<body>
+ <?php echo $this->runChild('partials.header'); ?>
+ <?php echo $this->runChild('partials.aside'); ?>
+
+ <?php /* Nội dung của trang sẽ được hiển thị ở đây */ ?>
+ <?php /* Trong yield là tên của section */ ?>
+ <?php echo $this->yieldContent('content'); ?>
+
+ <?php echo $this->runChild('partials.footer'); ?>
+</body>
+</html>

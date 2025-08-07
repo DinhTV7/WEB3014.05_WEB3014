@@ -1,0 +1,27 @@
+{{-- Xác định layout mà ta muốn sử dụng --}}
+@extends('layouts.admin')
+
+{{-- Xác định nội dung cần hiển thị --}}
+@section('content')
+    <h1>Danh sách chức vụ</h1>
+
+    <table border="1">
+        <thead>
+            <th>STT</th>
+            <th>Tên chức vụ</th>
+            <th>Thao tác</th>
+        </thead>
+        <tbody>
+            @foreach ($roles as $index => $role)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $role['name'] }}</td>
+                    <td>
+                        <button>Sửa</button>
+                        <button>Xóa</button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection

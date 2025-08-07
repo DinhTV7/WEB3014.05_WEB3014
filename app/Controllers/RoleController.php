@@ -20,6 +20,7 @@ class RoleController extends Controller
     {
         $roles = $this->modelRole->getAll();
 
-        debug($roles);
+        return view('roles.index', compact('roles'));
     }
 }
+// Ôn tập: Hiển thị dữ liệu của người dùng ra table
