@@ -4,7 +4,7 @@
     <h1>Thông tin chi tiết người dùng</h1>
 
     <p><strong>ID:</strong> {{ $user['id'] }}</p>
-    <p><strong>Hình ảnh:</strong> </p>
+    <p><strong>Hình ảnh:</strong>  <img src="{{ file_url($user['avatar']) }}" alt="avatar" width="80px"></p>
     <p><strong>Họ tên:</strong> {{ $user['name'] }}</p>
     <p><strong>SĐT:</strong> {{ $user['phone'] }}</p>
     <p><strong>Email:</strong> {{ $user['email'] }}</p>

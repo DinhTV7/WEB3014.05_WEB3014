@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>
-                        <img src="" alt="image">
+                        <img src="{{ file_url($user['avatar']) }}" alt="avatar" width="80px">
                     </td>
                     <td>{{ $user['name'] }}</td>
                     <td>{{ $user['role_name'] }}</td>
