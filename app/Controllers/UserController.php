@@ -22,6 +22,14 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
+    // Hiển thị chi tiết người dùng
+    public function show ($id)
+    {
+        $user = $this->modelUser->getById($id);
+        
+        return view('users.show', compact('user'));
+    }
+
     // Hàm xóa thông tin người dùng
     public function destroy ($id)
     {

@@ -5,6 +5,8 @@
 @section('content')
     <h1>Danh sách chức vụ</h1>
 
+    <a href="{{ route('/roles/create') }}">Thêm mới</a>
+
     <table border="1">
         <thead>
             <th>STT</th>

@@ -15,8 +15,23 @@ class User extends Model
                 ->from('users', 'u')
                 ->innerJoin('u', 'roles', 'r', 'u.role_id = r.id') // INNER FOIN roles r ON u.role_id = r.id
                 ->orderBy('u.id', 'DESC')
-                ->fetchAllAssociative();
+                ->fetchAllAssociative(); // Lấy ra nhiều dữ liệu
 
+        return $users;
+    }
+
+    // Hàm lấy thông tin theo id
+    public function getById($id)
+    {
+        $query =  $this->connection->createQueryBuilder();
+
+        $users = $query->select('u.*', 'r.name AS role_name')
+                ->from('users', 'u')
+                ->innerJoin('u', 'roles', 'r', 'u.role_id = r.id')
+                ->where('u.id = :id')
+                ->setParameter('id', $id)
+                ->fetchAssociative(); // Lấy ra 1 dữ liệu
+                
         return $users;
     }
 

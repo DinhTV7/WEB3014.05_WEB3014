@@ -31,7 +31,12 @@
                     <td>{{ $user['date_birth'] }}</td>
                     <td>{{ $user['status'] ? 'Kích hoạt' : 'Khóa' }}</td>
                     <td>
+                        <a href="{{ route('/users/show/' . $user['id']) }}">
+                            <button>Xem</button>
+                        </a>
+
                         <button>Sửa</button>
+                        
                         <a href="{{ route('/users/destroy/' . $user['id']) }}"
                             onclick="return confirm('Bạn có đồng ý xóa người dùng không?')">
                             <button>Xóa</button>

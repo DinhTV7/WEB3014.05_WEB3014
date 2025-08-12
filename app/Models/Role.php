@@ -16,6 +16,14 @@ class Role extends Model
         return $roles;
     }
 
+    // Hàm thêm dữ liệu
+    public function create($data)
+    {
+        return $this->connection->insert('roles', [
+            'name' => $data['name']
+        ]);
+    }
+
     // Hàm xóa dữ liệu
     public function delete ($id)
     {
