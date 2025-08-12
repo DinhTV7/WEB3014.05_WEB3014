@@ -1,0 +1,49 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('content'); ?>
+ <h1>Thêm mới người dùng</h1>
+
+ <form action="<?php echo \htmlentities(route('/users/store')??'', ENT_QUOTES, 'UTF-8', false); ?>" method="POST" enctype="multipart/form-data">
+ <div>
+ Hình ảnh:
+ <input type="file" name="avatar">
+ </div>
+ <div>
+ Họ tên:
+ <input type="text" name="name" placeholder="Nhập họ tên">
+ </div>
+ <div>
+ Số điện thoại:
+ <input type="text" name="phone" placeholder="Nhập số điện thoại">
+ </div>
+ <div>
+ Email:
+ <input type="text" name="email" placeholder="Nhập email">
+ </div>
+ <div>
+ Ngày sinh:
+ <input type="date" name="date_birth">
+ </div>
+ <div>
+ Chức vụ:
+ <select name="role_id">
+ <?php $__currentLoopData = $roles; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $role): $loop = $this->incrementLoopIndices();  ?>
+ <option value="<?php echo \htmlentities($role['id']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php echo \htmlentities($role['name']??'', ENT_QUOTES, 'UTF-8', false); ?>
+
+ </option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </div>
+ <div>
+ Trạng thái:
+ <select name="status">
+ <option value="0">Khóa</option>
+ <option value="1" selected>Kính hoạt</option>
+ </select>
+ </div>
+ <button type="submit">Submit</button>
+ </form>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.admin'); } ?>

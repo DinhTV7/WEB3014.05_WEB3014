@@ -5,6 +5,10 @@
 @section('content')
     <h1>Danh sách người dùng</h1>
 
+    <a href="{{ route('/users/create') }}">
+        Thêm mới
+    </a>
+
     <table border="1">
         <thead>
             <th>STT</th>

@@ -35,6 +35,20 @@ class User extends Model
         return $users;
     }
 
+    // Hàm thêm dữ liệu
+    public function create($data)
+    {
+        return $this->connection->insert('users', [
+            'avatar'        => $data['avatar'],
+            'name'          => $data['name'],
+            'phone'         => $data['phone'],
+            'email'         => $data['email'],
+            'date_birth'    => $data['date_birth'],
+            'role_id'       => $data['role_id'],
+            'status'        => $data['status'],
+        ]);
+    }
+
     // Hàm xóa dữ liệu
     public function delete ($id)
     {

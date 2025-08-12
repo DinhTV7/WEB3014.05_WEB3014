@@ -19,8 +19,10 @@ $router->get('/roles/destroy/{id}', RoleController::class . '@destroy');
 
 // Route quản lý người dùng
 $router->get('/users',              UserController::class . '@index');
-$router->get('/users/destroy/{id}', UserController::class . '@destroy');
 $router->get('/users/show/{id}',    UserController::class . '@show');
+$router->get('/users/create',       UserController::class . '@create');
+$router->post('/users/store',       UserController::class . '@store');
+$router->get('/users/destroy/{id}', UserController::class . '@destroy');
 
 // ------------------------
 

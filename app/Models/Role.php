@@ -30,3 +30,4 @@ class Role extends Model
         return $this->connection->delete('roles', ['id' => $id]);
     }
 }
+// Ôn tập: Xây dựng chức năng thêm người dùng
