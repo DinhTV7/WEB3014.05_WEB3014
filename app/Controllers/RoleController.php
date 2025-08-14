@@ -41,6 +41,27 @@ class RoleController extends Controller
         redirect('/roles');
     }
 
+    // Hiển thị form sửa
+    public function edit ($id)
+    {
+        $role = $this->modelRole->getById($id);
+
+        return view('roles.edit', compact('role'));
+    }
+
+    // Xử lý cập nhật
+    public function update ($id)
+    {
+        // Lấy ra dữ liệu từ form gửi lên
+        $data = [
+            'name' => $_POST['name']
+        ];
+
+        $this->modelRole->update($id, $data);
+
+        redirect('/roles');
+    }
+
     // Hàm xóa chức vụ
     public function destroy($id)
     {

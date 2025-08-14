@@ -16,12 +16,32 @@ class Role extends Model
         return $roles;
     }
 
+    public function getById($id)
+    {
+        $query =  $this->connection->createQueryBuilder();
+
+        $role = $query->select('*')->from('roles')
+                ->where('id = :id')
+                ->setParameter('id', $id)
+                ->fetchAssociative(); // Lấy ra 1 dữ liệu
+                
+        return $role;
+    }
+
     // Hàm thêm dữ liệu
     public function create($data)
     {
         return $this->connection->insert('roles', [
             'name' => $data['name']
         ]);
+    }
+
+    // Hàm cập nhật dữ liệu
+    public function update($id, $data)
+    {
+        return $this->connection->update('roles', [
+            'name' => $data['name']
+        ], ['id' => $id]);
     }
 
     // Hàm xóa dữ liệu

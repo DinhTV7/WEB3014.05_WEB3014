@@ -19,7 +19,10 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $role['name'] }}</td>
                     <td>
-                        <button>Sửa</button>
+                        <a href="{{ route('/roles/edit/' . $role['id']) }}">
+                            <button>Sửa</button>
+                        </a>
+                        
                         <a href="{{ route('/roles/destroy/' . $role['id']) }}" 
                             onclick="return confirm('Bạn có đồng ý xóa không?')">
 

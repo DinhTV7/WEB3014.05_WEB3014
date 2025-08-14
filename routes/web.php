@@ -15,6 +15,8 @@ $router->get('/', HomeController::class . '@index');
 $router->get('/roles',              RoleController::class . '@index');
 $router->get('/roles/create',       RoleController::class . '@create');
 $router->post('/roles/store',       RoleController::class . '@store');
+$router->get('/roles/edit/{id}',    RoleController::class . '@edit');
+$router->post('/roles/update/{id}', RoleController::class . '@update');
 $router->get('/roles/destroy/{id}', RoleController::class . '@destroy');
 
 // Route quản lý người dùng
