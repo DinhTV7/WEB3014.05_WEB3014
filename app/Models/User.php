@@ -7,15 +7,15 @@ use App\Model;
 class User extends Model
 {
     // Hàm lấy ra danh sách người dùng
-    public function getAll ()
+    public function getAll()
     {
         $query =  $this->connection->createQueryBuilder();
 
         $users = $query->select('u.*', 'r.name AS role_name')
-                ->from('users', 'u')
-                ->innerJoin('u', 'roles', 'r', 'u.role_id = r.id') // INNER FOIN roles r ON u.role_id = r.id
-                ->orderBy('u.id', 'DESC')
-                ->fetchAllAssociative(); // Lấy ra nhiều dữ liệu
+            ->from('users', 'u')
+            ->innerJoin('u', 'roles', 'r', 'u.role_id = r.id') // INNER FOIN roles r ON u.role_id = r.id
+            ->orderBy('u.id', 'DESC')
+            ->fetchAllAssociative(); // Lấy ra nhiều dữ liệu
 
         return $users;
     }
@@ -26,12 +26,12 @@ class User extends Model
         $query =  $this->connection->createQueryBuilder();
 
         $users = $query->select('u.*', 'r.name AS role_name')
-                ->from('users', 'u')
-                ->innerJoin('u', 'roles', 'r', 'u.role_id = r.id')
-                ->where('u.id = :id')
-                ->setParameter('id', $id)
-                ->fetchAssociative(); // Lấy ra 1 dữ liệu
-                
+            ->from('users', 'u')
+            ->innerJoin('u', 'roles', 'r', 'u.role_id = r.id')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->fetchAssociative(); // Lấy ra 1 dữ liệu
+
         return $users;
     }
 
@@ -49,8 +49,22 @@ class User extends Model
         ]);
     }
 
+    // Hàm cập nhật dữ liệu
+    public function update($id, $data)
+    {
+        return $this->connection->update('users', [
+            'avatar'        => $data['avatar'],
+            'name'          => $data['name'],
+            'phone'         => $data['phone'],
+            'email'         => $data['email'],
+            'date_birth'    => $data['date_birth'],
+            'role_id'       => $data['role_id'],
+            'status'        => $data['status'],
+        ], ['id' => $id]);
+    }
+
     // Hàm xóa dữ liệu
-    public function delete ($id)
+    public function delete($id)
     {
         return $this->connection->delete('users', ['id' => $id]);
     }

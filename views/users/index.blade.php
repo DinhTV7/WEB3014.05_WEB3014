@@ -39,7 +39,9 @@
                             <button>Xem</button>
                         </a>
 
-                        <button>Sửa</button>
+                        <a href="{{ route('/users/edit/' . $user['id']) }}">
+                            <button>Sửa</button>
+                        </a>
                         
                         <a href="{{ route('/users/destroy/' . $user['id']) }}"
                             onclick="return confirm('Bạn có đồng ý xóa người dùng không?')">
