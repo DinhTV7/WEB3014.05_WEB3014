@@ -4,15 +4,18 @@ namespace App\Controllers;
 
 use App\Controller;
 use App\Models\Role;
+use Rakit\Validation\Validator;
 
 class RoleController extends Controller
 {
     // Kết nối tới model cần dùng
     private $modelRole;
+    private $validator;
 
     public function __construct()
     {
         $this->modelRole = new Role();
+        $this->validator = new Validator();
     }
 
     // Hàm hiển thị danh sách
@@ -36,6 +39,18 @@ class RoleController extends Controller
             'name' => $_POST['name']
         ];
 
+        // Kiểm tra dữ liệu
+        $rules = [
+            'name' => 'required|max:50'
+        ];
+        $errors = $this->validate($this->validator, $data, $rules);
+
+        // Nếu có lỗi thì hiển thị ra màn hình
+        if (!empty($errors)) {
+            setFlash('error', reset($errors));
+            redirect('/roles/create');
+        }
+
         $this->modelRole->create($data);
 
         redirect('/roles');
@@ -56,6 +71,18 @@ class RoleController extends Controller
         $data = [
             'name' => $_POST['name']
         ];
+
+        // Kiểm tra dữ liệu
+        $rules = [
+            'name' => 'required|max:50'
+        ];
+        $errors = $this->validate($this->validator, $data, $rules);
+
+        // Nếu có lỗi thì hiển thị ra màn hình
+        if (!empty($errors)) {
+            setFlash('error', reset($errors));
+            redirect('/roles/edit/' . $id);
+        }
 
         $this->modelRole->update($id, $data);
 

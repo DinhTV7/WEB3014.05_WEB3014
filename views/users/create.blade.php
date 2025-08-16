@@ -3,6 +3,12 @@
 @section('content')
     <h1>Thêm mới người dùng</h1>
 
+    {{-- Hiển thị lỗi --}}
+    @if (isset($_SESSION['flash']['error']))
+        <p style="color: red">{{ $_SESSION['flash']['error'] }}</p>
+        <?php unset($_SESSION['flash']); ?>
+    @endif
+
     <form action="{{ route('/users/store') }}" method="POST" enctype="multipart/form-data">
         <div>
             Hình ảnh:

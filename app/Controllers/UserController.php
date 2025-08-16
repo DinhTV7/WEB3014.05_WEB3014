@@ -5,16 +5,19 @@ namespace App\Controllers;
 use App\Controller;
 use App\Models\Role;
 use App\Models\User;
+use Rakit\Validation\Validator;
 
 class UserController extends Controller
 {
     private $modelUser;
     private $modelRole;
+    private $validator;
 
     public function __construct()
     {
         $this->modelUser = new User();
         $this->modelRole = new Role();
+        $this->validator = new Validator();
     }
     
     // Hiển thị danh sách người dùng
@@ -54,6 +57,22 @@ class UserController extends Controller
             'status'        => $_POST['status'],
         ];
 
+        $rules = [
+            'name'          => 'required|max:255',
+            'phone'         => 'required|regex:/^[0-9]{10,15}$/',
+            'email'         => 'required|email',
+            'date_birth'    => 'required|date',
+            'role_id'       => 'required|integer',
+            'status'        => 'required|integer',
+        ];
+        $errors = $this->validate($this->validator, $data, $rules);
+
+        // Nếu có lỗi thì hiển thị ra màn hình
+        if (!empty($errors)) {
+            setFlash('error', reset($errors));
+            redirect('/users/create');
+        }
+
         // Xử lý hình ảnh
         if (is_upload('avatar')) {
             $data['avatar'] = $this->uploadFile($_FILES['avatar'], 'users');
@@ -85,6 +104,22 @@ class UserController extends Controller
             'role_id'       => $_POST['role_id'],
             'status'        => $_POST['status'],
         ];
+
+        $rules = [
+            'name'          => 'required|max:255',
+            'phone'         => 'required|regex:/^[0-9]{10,15}$/',
+            'email'         => 'required|email',
+            'date_birth'    => 'required|date',
+            'role_id'       => 'required|integer',
+            'status'        => 'required|integer',
+        ];
+        $errors = $this->validate($this->validator, $data, $rules);
+
+        // Nếu có lỗi thì hiển thị ra màn hình
+        if (!empty($errors)) {
+            setFlash('error', reset($errors));
+            redirect('/users/edit/' . $id);
+        }
 
         $user = $this->modelUser->getById($id);
 
