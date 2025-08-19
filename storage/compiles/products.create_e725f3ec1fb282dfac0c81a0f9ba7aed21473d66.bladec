@@ -1,0 +1,46 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('content'); ?>
+ <h1>Thêm mới sản phẩm</h1>
+
+ <?php if(isset($_SESSION['flash']['error'])): ?>
+ <p style="color: red"><?php echo \htmlentities($_SESSION['flash']['error']??'', ENT_QUOTES, 'UTF-8', false); ?></p>
+ <?php
+ unset($_SESSION['flash'])
+ ?>
+ <?php endif; ?>
+
+ <form action="<?php echo \htmlentities(route('/products/store')??'', ENT_QUOTES, 'UTF-8', false); ?>" method="POST" enctype="multipart/form-data">
+ <div>
+ Danh mục:
+ <select name="category_id">
+ <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $item): $loop = $this->incrementLoopIndices();  ?>
+ <option value="<?php echo \htmlentities($item['id']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php echo \htmlentities($item['name']??'', ENT_QUOTES, 'UTF-8', false); ?>
+
+ </option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </div>
+
+ <div>
+ Tên sản phẩm:
+ <input type="text" name="name" placeholder="Nhập tên sản phẩm">
+ </div>
+
+ <div>
+ Hình ảnh:
+ <input type="file" name="img_thumbnail">
+ </div>
+
+ <div>
+ Mô tả:
+ <input type="text" name="description" placeholder="Nhập mô tả">
+ </div>
+
+ <button type="submit">Submit</button>
+ </form>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.admin'); } ?>
